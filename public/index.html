@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto Match Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #1b202c;
+      color: #bac7e4;
+      position: relative;
+      min-height: 80vh;
+    }
+    .logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 40vw;
+      height: 40vw;
+      max-width: 50vw;
+      max-height: 50vw;
+      transform: translate(-50%, -50%);
+      opacity: 0.05;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #d1dfff;
+      margin-bottom: 30px;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border: 1px solid #37c886;
+      border-radius: 5px;
+      background-color: #13161f;
+      overflow: hidden;
+      height: 44px;
+    }
+    input[type="number"] {
+      flex: 1;
+      padding: 0 15px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      background-color: #13161f;
+      color: #bac7e4;
+      font-size: 16px;
+      outline: none;
+      height: 100%;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+    }
+    /* Remove spin buttons in number input */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    button {
+      padding: 0 20px;
+      cursor: pointer;
+      background-color: #37c886cc;
+      color: #f8fafd;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      font-size: 16px;
+      height: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #37c886;
+    }
+    /* Track output - red box */
+    #trackOutput {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 12px 15px;
+      border: 2px solid #ff4579;
+      border-radius: 5px;
+      font-size: 18px;
+      user-select: none;
+      display: none; /* initially hidden */
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background-color: #13161f;
+      margin: 10px 0;
+      padding: 12px 15px;
+      border: 2px solid #82aaff;
+      border-radius: 5px;
+      font-size: 16px;
+      user-select: none;
+    }
+    .result-section {
+      margin-bottom: 80px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Auto Match Generator</h1>
+  <div class="input-container">
+    <input type="number" id="carCount" value="1" min="1" />
+    <button onclick="generateRace()">Generate</button>
+  </div>
+
+  <div class="result-section">
+    <h3 id="trackOutput"></h3>
+    <ul id="carList"></ul>
+  </div>
+
+  <img src="logo.png" alt="Logo" class="logo" />
+
+  <script>
+    async function generateRace() {
+      const count = parseInt(document.getElementById('carCount').value);
+      if (isNaN(count) || count <= 0) {
+        alert('Please enter a valid positive number');
+        return;
+      }
+      const response = await fetch(`/api/race?count=${count}`);
+      const data = await response.json();
+
+      const trackOutput = document.getElementById('trackOutput');
+      trackOutput.textContent = `Track: ${data.track}`;
+      trackOutput.style.display = 'block'; // show track box
+
+      const list = document.getElementById('carList');
+      list.innerHTML = '';
+      data.cars.forEach(car => {
+        const li = document.createElement('li');
+        li.textContent = car;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
