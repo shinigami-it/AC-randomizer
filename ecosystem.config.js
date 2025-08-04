@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: ' assetto-fileuploading',
+      name: 'ac-randomizer',
       script: 'npx',
       args: 'nodemon server.js',
       watch: ['server.js', 'protected', 'routes', 'views'],
