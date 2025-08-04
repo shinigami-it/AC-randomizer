@@ -35,9 +35,9 @@ Run the Server
 ```
 node server.js
 ```
-By default, the server listens on port 50002
+By default, the server listens on port 50003
 ```
-http://localhost:50002
+http://localhost:50003
 ```
 Open the following URL in your browser to access the Auto Match Generator UI:
 ### API Endpoints

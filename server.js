@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = 50003;
 
 const CARS_FOLDER = 'C:/Program Files (x86)/Steam/steamapps/common/assettocorsa/content/cars';
 const TRACKS_FOLDER = 'C:/Program Files (x86)/Steam/steamapps/common/assettocorsa/content/tracks';
