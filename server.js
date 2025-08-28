@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = 50003;
 
-const EXCLUDE_KEYWORDS = ['rss', 'vrc', 'gravygarage', 'wdb', 'wdt', 'traffic', 'drift'];
+const EXCLUDE_KEYWORDS = ['rss', 'vrc', 'gravygarage', 'wdb', 'wdt', 'traffic', 'drift', 'adc'];
 
 const CARS_FOLDER = '/home/kmf/assetto-corsa/assetto/content/cars';
 const TRACKS_FOLDER = '/home/kmf/assetto-corsa/assetto/content/tracks';
