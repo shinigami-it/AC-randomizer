@@ -25,9 +25,8 @@ function loadCars() {
     const fullPath = path.join(CARS_FOLDER, name);
     if (!fs.lstatSync(fullPath).isDirectory()) return false;
 
-    return !EXCLUDE_KEYWORDS.some(keyword => 
-      name.toLowerCase().includes(keyword.toLowerCase())
-    );
+    const lowerName = name.toLowerCase();
+    return !EXCLUDE_KEYWORDS.some(keyword => lowerName.includes(keyword.toLowerCase()));
   });
   usedCars = [];
 }
