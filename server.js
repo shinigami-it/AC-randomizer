@@ -5,8 +5,10 @@ const path = require('path');
 const app = express();
 const PORT = 50003;
 
-const CARS_FOLDER = 'C:/Program Files (x86)/Steam/steamapps/common/assettocorsa/content/cars';
-const TRACKS_FOLDER = 'C:/Program Files (x86)/Steam/steamapps/common/assettocorsa/content/tracks';
+const EXCLUDE_KEYWORDS = ['rss', 'vrc', 'gravygarage', 'wdb', 'wdt', 'traffic'. 'drift']
+
+const CARS_FOLDER = '/home/kmf/assetto-corsa/assetto/content/cars';
+const TRACKS_FOLDER = '/home/kmf/assetto-corsa/assetto/content/tracks';
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,7 +23,11 @@ function shuffle(array) {
 function loadCars() {
   availableCars = fs.readdirSync(CARS_FOLDER).filter(name => {
     const fullPath = path.join(CARS_FOLDER, name);
-    return fs.lstatSync(fullPath).isDirectory();
+    if (!fs.lstatSync(fullPath).isDirectory()) return false;
+
+    return !EXCLUDE_KEYWORDS.some(keyword => 
+      name.toLowerCase().includes(keyword.toLowerCase())
+    );
   });
   usedCars = [];
 }
