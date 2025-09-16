@@ -23,7 +23,7 @@ const EXCLUDE_CAR_KEYWORDS = [
 const INCLUDE_CAR_KEYWORDS = []; // if not empty → whitelist mode
 
 // Tracks
-const EXCLUDE_TRACK_KEYWORDS = ["ks"];
+const EXCLUDE_TRACK_KEYWORDS = ["ks", "adc"];
 const INCLUDE_TRACK_KEYWORDS = []; // if not empty → whitelist mode
 
 const CARS_FOLDER = "/home/kmf/assetto-corsa/assetto/content/cars";
