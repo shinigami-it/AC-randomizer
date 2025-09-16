@@ -16,7 +16,9 @@ const EXCLUDE_CAR_KEYWORDS = [
 	"drift",
 	"adc",
 	"mfg",
-	"rw"
+	"rw",
+	"rfc",
+	"gra"
 ];
 const INCLUDE_CAR_KEYWORDS = []; // if not empty → whitelist mode
 
